@@ -1,8 +1,14 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include "bitmap.h"
 
 int main(int argc, char **argv)
 {
+
+    char *input, *output;
+    FILE *in_f, *out_f;
 
     if (argc < 2) {
 
@@ -18,7 +24,23 @@ int main(int argc, char **argv)
 
     } else {
 
-        // TODO
+        input = (char*) malloc(sizeof(char) * (strlen(argv[1]) + 1));
+        strcpy(input, argv[1]);
+        //in_f = fopen(input, "rb");
+
+        if (argc > 2) {
+            output = (char*) malloc(sizeof(char) * (strlen(argv[2]) + 1));
+            strcpy(output, argv[2]);
+            //out_f = fopen(output, "w");
+        }
+
+        //fclose(in_f);
+        free(input);
+
+        if (argc > 2) {
+            //fclose(out_f);
+            free(output);
+        }
 
     }
 

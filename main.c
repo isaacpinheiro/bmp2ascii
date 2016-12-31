@@ -9,6 +9,8 @@ int main(int argc, char **argv)
 
     char *input, *output;
     FILE *in_f, *out_f;
+    BitmapHeader bh;
+    DIB dib;
 
     if (argc < 2) {
 
@@ -34,7 +36,17 @@ int main(int argc, char **argv)
             out_f = fopen(output, "w");
         }
 
-        // TODO
+        if (in_f != NULL) {
+
+            fread(&bh, sizeof(BitmapHeader), 1, in_f);
+            fread(&dib, sizeof(DIB), 1, in_f);
+
+            Color32 *color = (Color32*) malloc(sizeof(Color32) * (dib.height * dib.width));
+            fread(&color, sizeof(Color32), 1, in_f);
+
+            if (argc < 3) generate_image(color, dib.width, dib.height);
+
+        }
 
         if (in_f != NULL) fclose(in_f);
         free(input);

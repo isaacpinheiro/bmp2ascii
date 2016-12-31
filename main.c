@@ -26,19 +26,21 @@ int main(int argc, char **argv)
 
         input = (char*) malloc(sizeof(char) * (strlen(argv[1]) + 1));
         strcpy(input, argv[1]);
-        //in_f = fopen(input, "rb");
+        in_f = fopen(input, "rb");
 
         if (argc > 2) {
             output = (char*) malloc(sizeof(char) * (strlen(argv[2]) + 1));
             strcpy(output, argv[2]);
-            //out_f = fopen(output, "w");
+            out_f = fopen(output, "w");
         }
 
-        //fclose(in_f);
+        // TODO
+
+        if (in_f != NULL) fclose(in_f);
         free(input);
 
         if (argc > 2) {
-            //fclose(out_f);
+            if (out_f != NULL) fclose(out_f);
             free(output);
         }
 

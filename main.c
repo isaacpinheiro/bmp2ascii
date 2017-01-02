@@ -52,6 +52,12 @@ int main(int argc, char **argv)
             if (argc > 2) generate_image_into_file(color, dib.width, dib.height, out_f);
             else generate_image(color, dib.width, dib.height);
 
+            for (i=0; i<dib.height; i++) {
+                free(color[i]);
+            }
+
+            free(color);
+
         }
 
         if (in_f != NULL) fclose(in_f);

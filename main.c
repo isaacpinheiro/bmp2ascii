@@ -41,10 +41,16 @@ int main(int argc, char **argv)
             fread(&bh, sizeof(BitmapHeader), 1, in_f);
             fread(&dib, sizeof(DIB), 1, in_f);
 
-            Color32 *color = (Color32*) malloc(sizeof(Color32) * (dib.height * dib.width));
-            fread(&color, sizeof(Color32), 1, in_f);
+            Color32 **color = (Color32**) malloc(sizeof(Color32*) * dib.height);
+            int i;
 
-            if (argc < 3) generate_image(color, dib.width, dib.height);
+            for (i=0; i<dib.height; i++) {
+                color[i] = (Color32*) malloc(sizeof(Color32) * dib.width);
+                fread(color[i], sizeof(Color), 1, in_f);
+            }
+
+            if (argc > 2) generate_image_into_file(color, dib.width, dib.height, out_f);
+            else generate_image(color, dib.width, dib.height);
 
         }
 

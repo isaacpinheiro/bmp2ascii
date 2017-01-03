@@ -46,7 +46,7 @@ int main(int argc, char **argv)
 
             for (i=0; i<dib.height; i++) {
                 color[i] = (Color32*) malloc(sizeof(Color32) * dib.width);
-                fread(color[i], sizeof(Color), 1, in_f);
+                fread(color[i], sizeof(Color32), 1, in_f);
             }
 
             if (argc > 2) generate_image_into_file(color, dib.width, dib.height, out_f);

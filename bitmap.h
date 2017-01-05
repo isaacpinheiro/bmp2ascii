@@ -48,8 +48,8 @@ typedef struct Color {
     unsigned char red;
 } Color;
 
-void generate_image(Color32 *color, unsigned int width, unsigned int height);
-void generate_image_into_file(Color32 *color, unsigned int width, unsigned int height, FILE *out_f);
+void generate_image(Color *color, unsigned int width, unsigned int height);
+void generate_image_into_file(Color *color, unsigned int width, unsigned int height, FILE *out_f);
 
 #endif
 
